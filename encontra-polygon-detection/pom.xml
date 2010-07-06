@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <name>EnContRA Polygon Detection Service</name>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <groupId>pt.inevo.encontra</groupId>
     <artifactId>encontra-polygon-detection</artifactId>
     <version>1.0-SNAPSHOT</version>

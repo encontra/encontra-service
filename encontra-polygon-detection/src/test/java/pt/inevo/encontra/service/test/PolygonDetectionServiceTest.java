@@ -5,6 +5,7 @@ package pt.inevo.encontra.service.test;
 
 import junit.framework.TestCase;
 import pt.inevo.encontra.drawing.Drawing;
+import pt.inevo.encontra.drawing.swing.SVGViewer;
 import pt.inevo.encontra.geometry.Polygon;
 import pt.inevo.encontra.service.impl.PolygonDetectionServiceImpl;
 
@@ -152,7 +153,7 @@ public class PolygonDetectionServiceTest extends TestCase {
 		SVGViewer viewer1=new SVGViewer();
 		viewer1.setSVG(drawing1.getSVGDocument());*/
 
-		service.detectPolygons(_svg4);
+		service.detectPolygons(_svg);
 
 
 		System.out.println("Detected Polygons:");
@@ -171,7 +172,7 @@ public class PolygonDetectionServiceTest extends TestCase {
 		//SVGViewer viewer=new SVGViewer();
 		//viewer.setSVG(drawing.getSVGDocument());
 
-		while(true){}
+		//while(true){}
 	}
 
 }

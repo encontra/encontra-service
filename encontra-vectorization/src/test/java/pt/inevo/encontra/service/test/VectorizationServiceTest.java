@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 
 
 import junit.framework.TestCase;
+import pt.inevo.encontra.drawing.Drawing;
+import pt.inevo.encontra.drawing.swing.SVGViewer;
 import pt.inevo.encontra.geometry.PolygonSet;
 import pt.inevo.encontra.service.VectorizationService;
 import pt.inevo.encontra.service.impl.VectorizationServiceImpl;
@@ -24,7 +26,7 @@ public class VectorizationServiceTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		service=new VectorizationServiceImpl();
-		image=ImageIO.read(new File("test/simple.png"));
+		image=ImageIO.read(new File(getClass().getResource("/simple.png").getFile()));
 	}
 
 	protected void tearDown() throws Exception {
@@ -33,7 +35,14 @@ public class VectorizationServiceTest extends TestCase {
 
 	public void testVectorize() {
 		String svg=service.vectorize(image);
-		//while(true){}
+        /*
+        Drawing drawing=new Drawing();
+		drawing.createFromSVG(svg);
+		drawing.initialize();
+
+		SVGViewer viewer=new SVGViewer();
+		viewer.setSVG(drawing.getSVGDocument());
+		while(true){}*/
 	}
 
 	public void testSimplify() {

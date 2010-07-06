@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <name>EnContRA Vectorization Service</name>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
     <groupId>pt.inevo.encontra</groupId>
     <artifactId>encontra-vectorization</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -18,6 +18,11 @@
         <dependency>
             <groupId>pt.inevo.encontra</groupId>
             <artifactId>encontra-geometry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>pt.inevo.encontra</groupId>
+            <artifactId>encontra-drawing</artifactId> <!-- TODO - Remove this dependency -->
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
