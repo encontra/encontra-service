@@ -54,6 +54,14 @@ public class VectorizationServiceTest extends TestCase {
 		BufferedImage simplified=service.simplify(image);
 		String svg=service.vectorize(image);
 
+        Drawing drawing=new Drawing();
+		drawing.createFromSVG(svg);
+		drawing.initialize();
+
+		SVGViewer viewer=new SVGViewer();
+		viewer.setSVG(drawing.getSVGDocument());
+		while(true){}
+
 	}
 }
 

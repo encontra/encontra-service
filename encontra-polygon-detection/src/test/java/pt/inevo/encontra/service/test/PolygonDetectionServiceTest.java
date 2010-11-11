@@ -146,12 +146,12 @@ public class PolygonDetectionServiceTest extends TestCase {
 		service.AddLine(p7,p8);
 		*/
 
-                /*Drawing drawing1=new Drawing();
+        Drawing drawing1=new Drawing();
 		drawing1.createFromSVG(_svg);
 		drawing1.initialize();
 
 		SVGViewer viewer1=new SVGViewer();
-		viewer1.setSVG(drawing1.getSVGDocument());*/
+		viewer1.setSVG(drawing1.getSVGDocument());
 
 		service.detectPolygons(_svg);
 
@@ -169,10 +169,10 @@ public class PolygonDetectionServiceTest extends TestCase {
 		drawing.createFromSVG(service._polygon_set.AsSVG(false));
 		drawing.initialize();
 
-		//SVGViewer viewer=new SVGViewer();
-		//viewer.setSVG(drawing.getSVGDocument());
+		SVGViewer viewer=new SVGViewer();
+		viewer.setSVG(drawing.getSVGDocument());
 
-		//while(true){}
+		while(true){}
 	}
 
 }
