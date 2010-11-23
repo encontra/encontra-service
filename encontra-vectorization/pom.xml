@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>imagej</groupId>
-            <artifactId>imagej</artifactId>
+            <artifactId>ij</artifactId>
             <version>1.43</version>
         </dependency>
     </dependencies>
