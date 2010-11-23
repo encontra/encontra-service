@@ -58,9 +58,9 @@ public class VectorizationServiceTest extends TestCase {
 		drawing.createFromSVG(svg);
 		drawing.initialize();
 
-		SVGViewer viewer=new SVGViewer();
-		viewer.setSVG(drawing.getSVGDocument());
-		while(true){}
+		//SVGViewer viewer=new SVGViewer();
+		//viewer.setSVG(drawing.getSVGDocument());
+		//while(true){}
 
 	}
 }
