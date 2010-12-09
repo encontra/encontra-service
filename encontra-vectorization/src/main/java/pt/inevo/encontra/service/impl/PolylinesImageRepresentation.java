@@ -66,19 +66,20 @@ public class PolylinesImageRepresentation {
 	*/
 	public ArrayList<Polyline> PerformPolylinization()
 	{
+		boolean show=false;
 		// inverts image stored on _p_image_data
 		// lines will be 0xFF and empty will be 0x00
 		//InvertImageData();
 		binaryProcessor.invert();
 		ImagePlus invert=new ImagePlus(null, binaryProcessor.createImage());
 		invert.setTitle("Invert");
-		invert.show();
+		if(show) invert.show();
 
 		// make a 3 pixel clear boundary on image
 		ClearBorder();
 		ImagePlus border=new ImagePlus(null, binaryProcessor.createImage());
 		border.setTitle("Invert");
-		border.show();
+		if(show) border.show();
 
 		// create the image points array
 		//CreateImagePoints(widht,height,image_data);
