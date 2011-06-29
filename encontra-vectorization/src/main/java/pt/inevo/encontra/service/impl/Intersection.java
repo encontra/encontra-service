@@ -46,21 +46,21 @@ public class Intersection {
 			for (i=0; i<_points.size(); i++) {
 				p = _points.get(i);
 				if (p!=null) {
-					x_sum+=p.GetX();
-					y_sum+=p.GetY();
+					x_sum+=p.getX();
+					y_sum+=p.getY();
 				}
 			}
 
 			if (i>0) {
-				mass_center.SetX(x_sum/i);
-				mass_center.SetY(y_sum/i);
+				mass_center.setX(x_sum / i);
+				mass_center.setY(y_sum / i);
 			}
 
 			// updates the points with the new coordinates
 			for (i=0; i<_points.size(); i++) {
 				p=_points.get(i);
-				p.SetX(mass_center.GetX());
-				p.SetY(mass_center.GetY());
+				p.setX(mass_center.getX());
+				p.setY(mass_center.getY());
 			}
 
 			return true;

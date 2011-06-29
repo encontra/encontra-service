@@ -218,10 +218,10 @@ public class PolylinesImageRepresentation {
 
 		double x, y;
 		// finds next on pixel
-	    for (y = point.GetY(); y < height_minus_1; y++)
-			for (x = (y==point.GetY()?point.GetX():1); x< width_minus_1;x++)
+	    for (y = point.getY(); y < height_minus_1; y++)
+			for (x = (y==point.getY()?point.getX():1); x< width_minus_1;x++)
 				if (binaryProcessor.get((int)x, (int)y) == BINARY_PIXEL_ON) {
-					point.SetX(x); point.SetY(y);
+					point.setX(x); point.setY(y);
 					return point;
 				}
 
@@ -284,7 +284,7 @@ public class PolylinesImageRepresentation {
 			return new Point(0,0);
 		}
 
-		return new Point(point.GetX()+delta_x[freeman_code], point.GetY()+delta_y[freeman_code]);
+		return new Point(point.getX()+delta_x[freeman_code], point.getY()+delta_y[freeman_code]);
 	}
 
 
@@ -307,7 +307,7 @@ public class PolylinesImageRepresentation {
 
 		for (int code=0;code<NUM_NEIGHBOURS; code++) {
 			p = Neighbour(point, code);
-			int data=binaryProcessor.get((int)p.GetX(),(int)p.GetY());
+			int data=binaryProcessor.get((int)p.getX(),(int)p.getY());
 
 			if ( data== BINARY_PIXEL_ON) {
 				neighbours[neighbours_on] = p;
@@ -330,10 +330,10 @@ public class PolylinesImageRepresentation {
 
 				// store original value if requested
 				if (original_values!=null)
-					original_values[code] = binaryProcessor.get((int)p.GetX(),(int)p.GetY());
+					original_values[code] = binaryProcessor.get((int)p.getX(),(int)p.getY());
 
 				// sets the new value
-				binaryProcessor.set((int)p.GetX(),(int)p.GetY(), value);
+				binaryProcessor.set((int)p.getX(),(int)p.getY(), value);
 			}
 		}
 	}
@@ -350,7 +350,7 @@ public class PolylinesImageRepresentation {
 
 				// store original value if given
 				if (original_values!=null)
-					binaryProcessor.set((int)p.GetX(),(int)p.GetY(), original_values[code]);
+					binaryProcessor.set((int)p.getX(),(int)p.getY(), original_values[code]);
 			}
 		}
 	}
@@ -481,13 +481,13 @@ public class PolylinesImageRepresentation {
 		// add current pixel to polyline
 		polyline.AddVertex(endpoint = new Point(point.x, point.y));
 
-		if (_image_points[(int)point.GetX()][(int)point.GetY()]!=null) {
+		if (_image_points[(int)point.getX()][(int)point.getY()]!=null) {
 			if (intersection!=null)
-				intersection.AddPoint(_image_points[(int)point.GetX()][(int)point.GetY()]);
+				intersection.AddPoint(_image_points[(int)point.getX()][(int)point.getY()]);
 		}
 
 		// fill the points array
-		_image_points[(int)point.GetX()][(int)point.GetY()] = endpoint;
+		_image_points[(int)point.getX()][(int)point.getY()] = endpoint;
 
 		// if this is an intersection
 		if (intersection!=null) {
@@ -503,7 +503,7 @@ public class PolylinesImageRepresentation {
 		}
 
 		// flag current pixel as OFF
-		binaryProcessor.set((int)point.GetX(),(int)point.GetY(), BINARY_PIXEL_OFF);
+		binaryProcessor.set((int)point.getX(),(int)point.getY(), BINARY_PIXEL_OFF);
 
 
 		// let's see which neighbors are ON
