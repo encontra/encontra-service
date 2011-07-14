@@ -1,17 +1,14 @@
 package pt.inevo.encontra.service.test;
 
-
-
-
 import junit.framework.TestCase;
 import pt.inevo.encontra.drawing.Drawing;
-import pt.inevo.encontra.drawing.swing.SVGViewer;
+import pt.inevo.encontra.drawing.DrawingFactory;
 import pt.inevo.encontra.geometry.Polygon;
 import pt.inevo.encontra.service.impl.PolygonDetectionServiceImpl;
 
+import java.io.IOException;
+
 public class PolygonDetectionServiceTest extends TestCase {
-
-
 
 	private PolygonDetectionServiceImpl service;
 	private String _svg;
@@ -113,7 +110,7 @@ public class PolygonDetectionServiceTest extends TestCase {
 		while(true){}
 	}*/
 
-	public void testDetectPolygons() {
+	public void testDetectPolygons() throws IOException {
 		/*
 		Point p1=new Point(10,0);
 		//p1.SetID(1);
@@ -146,9 +143,7 @@ public class PolygonDetectionServiceTest extends TestCase {
 		service.AddLine(p7,p8);
 		*/
 
-        Drawing drawing1=new Drawing();
-		drawing1.createFromSVG(_svg);
-		drawing1.initialize();
+        Drawing drawing1= DrawingFactory.getInstance().drawingFromSVG(_svg);
 
 		//SVGViewer viewer1=new SVGViewer();
 		//viewer1.setSVG(drawing1.getSVGDocument());
@@ -165,9 +160,7 @@ public class PolygonDetectionServiceTest extends TestCase {
 		System.out.println(service._polygon_set.AsSVG(false));
 
 
-		Drawing drawing=new Drawing();
-		drawing.createFromSVG(service._polygon_set.AsSVG(false));
-		drawing.initialize();
+		Drawing drawing = DrawingFactory.getInstance().drawingFromSVG(service._polygon_set.AsSVG(false));
 
 		//SVGViewer viewer=new SVGViewer();
 		//viewer.setSVG(drawing.getSVGDocument());

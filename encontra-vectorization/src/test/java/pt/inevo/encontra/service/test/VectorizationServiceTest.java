@@ -1,18 +1,16 @@
 package pt.inevo.encontra.service.test;
 
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-
-import javax.imageio.ImageIO;
-
-
 import junit.framework.TestCase;
 import pt.inevo.encontra.drawing.Drawing;
-import pt.inevo.encontra.drawing.swing.SVGViewer;
-import pt.inevo.encontra.geometry.PolygonSet;
+import pt.inevo.encontra.drawing.DrawingFactory;
 import pt.inevo.encontra.service.VectorizationService;
 import pt.inevo.encontra.service.impl.VectorizationServiceImpl;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class VectorizationServiceTest extends TestCase {
 
@@ -50,13 +48,11 @@ public class VectorizationServiceTest extends TestCase {
 		//while(true){}
 	}
 
-	public void testDetectPolygons() {
+	public void testDetectPolygons() throws IOException {
 		BufferedImage simplified=service.simplify(image);
 		String svg=service.vectorize(image);
 
-        Drawing drawing=new Drawing();
-		drawing.createFromSVG(svg);
-		drawing.initialize();
+        Drawing drawing = DrawingFactory.getInstance().drawingFromSVG(svg);
 
 		//SVGViewer viewer=new SVGViewer();
 		//viewer.setSVG(drawing.getSVGDocument());

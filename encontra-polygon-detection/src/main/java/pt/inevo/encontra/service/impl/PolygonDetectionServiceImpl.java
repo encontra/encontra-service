@@ -2,14 +2,15 @@ package pt.inevo.encontra.service.impl;
 
 
 import pt.inevo.encontra.drawing.Drawing;
+import pt.inevo.encontra.drawing.DrawingFactory;
 import pt.inevo.encontra.drawing.Primitive;
 import pt.inevo.encontra.geometry.Line;
 import pt.inevo.encontra.geometry.LineSet;
 import pt.inevo.encontra.geometry.Point;
 import pt.inevo.encontra.geometry.PolygonSet;
 import pt.inevo.encontra.service.PolygonDetectionService;
-import pt.inevo.jcali.CIPoint;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,10 +36,12 @@ public class PolygonDetectionServiceImpl implements PolygonDetectionService {
 	*/
 	boolean ReadSVG(String svg) {
 
-		Drawing drawing=new Drawing();
-		drawing.createFromSVG(svg);
-		drawing.initialize();
-
+        Drawing drawing = null;
+        try {
+            drawing = DrawingFactory.getInstance().drawingFromSVG(svg);
+        } catch (IOException e) {
+            log.log(Level.SEVERE, "Couldn't create the Drawing from svg file: " + svg);
+        }
 
 		//double max_dist=drawing.getDiagonalLength()/100;
 		//drawing.reduceVertexCount(0.01);
