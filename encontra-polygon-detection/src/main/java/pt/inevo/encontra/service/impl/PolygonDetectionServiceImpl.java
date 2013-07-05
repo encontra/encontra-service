@@ -11,6 +11,7 @@ import pt.inevo.encontra.geometry.PolygonSet;
 import pt.inevo.encontra.service.PolygonDetectionService;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,7 +39,7 @@ public class PolygonDetectionServiceImpl implements PolygonDetectionService {
 
         Drawing drawing = null;
         try {
-            drawing = DrawingFactory.getInstance().drawingFromSVG(svg);
+            drawing = DrawingFactory.getInstance().drawingFromSVG(new StringReader(svg));
         } catch (IOException e) {
             log.log(Level.SEVERE, "Couldn't create the Drawing from svg file: " + svg);
         }
