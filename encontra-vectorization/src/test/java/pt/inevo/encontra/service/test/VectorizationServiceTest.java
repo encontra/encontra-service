@@ -17,30 +17,22 @@ public class VectorizationServiceTest extends TestCase {
 	private VectorizationService service;
 	private BufferedImage image;
 
-	public VectorizationServiceTest(String name) {
-		super(name);
-	}
-
 	protected void setUp() throws Exception {
 		super.setUp();
 		service=new VectorizationServiceImpl();
-		image=ImageIO.read(new File(getClass().getResource("/simple.png").getFile()));
+		image=ImageIO.read(new File(getClass().getResource("/sketch49.off_3.png").getFile()));
 	}
 
 	protected void tearDown() throws Exception {
 		super.tearDown();
 	}
 
-	public void testVectorize() {
+	public void testVectorize() throws IOException {
 		String svg=service.vectorize(image);
-        /*
-        Drawing drawing=new Drawing();
-		drawing.createFromSVG(svg);
-		drawing.initialize();
+        System.out.println(svg);
 
-		SVGViewer viewer=new SVGViewer();
-		viewer.setSVG(drawing.getSVGDocument());
-		while(true){}*/
+        //DrawingFactory.getInstance().drawingFromSVG(new StringReader(svg)).show();
+
 	}
 
 	public void testSimplify() {
@@ -59,5 +51,11 @@ public class VectorizationServiceTest extends TestCase {
 		//while(true){}
 
 	}
+
+    public static void main(String [] args) throws Exception {
+        VectorizationServiceTest test = new VectorizationServiceTest();
+        test.setUp();
+        test.testDetectPolygons();
+    }
 }
 

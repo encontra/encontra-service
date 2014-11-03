@@ -1,10 +1,5 @@
 package pt.inevo.encontra.service.impl;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import ij.ImagePlus;
 import ij.process.BinaryProcessor;
 import ij.process.ByteProcessor;
@@ -12,6 +7,10 @@ import ij.process.ColorProcessor;
 import pt.inevo.encontra.geometry.Polyline;
 import pt.inevo.encontra.service.VectorizationService;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 
@@ -41,7 +40,7 @@ public class VectorizationServiceImpl implements VectorizationService {
 
 	public BufferedImage simplify(BufferedImage image) {
 
-		boolean show=false;
+		boolean show=true;
 
 		String _destination_dir=".";
 
