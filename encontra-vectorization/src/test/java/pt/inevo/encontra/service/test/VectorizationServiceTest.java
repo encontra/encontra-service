@@ -20,7 +20,7 @@ public class VectorizationServiceTest extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		service=new VectorizationServiceImpl();
-		image=ImageIO.read(new File(getClass().getResource("/sketch49.off_3.png").getFile()));
+		image=ImageIO.read(new File(getClass().getResource("/simple.png").getFile()));
 	}
 
 	protected void tearDown() throws Exception {
