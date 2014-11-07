@@ -4,6 +4,7 @@ import ij.ImagePlus;
 import ij.process.BinaryProcessor;
 import ij.process.ByteProcessor;
 import ij.process.ColorProcessor;
+import ij.process.ImageProcessor;
 import pt.inevo.encontra.geometry.Polyline;
 import pt.inevo.encontra.service.VectorizationService;
 
@@ -17,6 +18,8 @@ import java.util.logging.Logger;
 public class VectorizationServiceImpl implements VectorizationService {
 
 	Logger _log=Logger.getLogger(VectorizationServiceImpl.class.getName());
+
+    public static boolean debug = false;
 
 	public String vectorize(BufferedImage image){
 
@@ -39,15 +42,11 @@ public class VectorizationServiceImpl implements VectorizationService {
 	}
 
 	public BufferedImage simplify(BufferedImage image) {
-
-		boolean show=true;
-
+        
 		String _destination_dir=".";
 
 	    ColorProcessor colorProcessor=new ColorProcessor(image);
-	    ImagePlus imagePlus=new ImagePlus(null, colorProcessor.createImage());
-	    imagePlus.setTitle("Original");
-	    if(show) imagePlus.show();
+        debug(colorProcessor, "Original");
 
 	    try {
 	    	File originalFile=new File(_destination_dir+File.separator+"original.png");
@@ -73,24 +72,17 @@ public class VectorizationServiceImpl implements VectorizationService {
 
 	    ByteProcessor byteProcessor=(ByteProcessor)colorProcessor.convertToByte(true);
 	    BinaryProcessor binaryProcessor=new BinaryProcessor(byteProcessor);
-
-	    ImagePlus byteImage=new ImagePlus(null, binaryProcessor.createImage());
-	    byteImage.setTitle("Convert to byte");
-	    if(show) byteImage.show();
+        debug(binaryProcessor, "Convert to byte");
 
 	    //binaryProcessor.setAutoThreshold(ImageProcessor.ISODATA, ImageProcessor.BLACK_AND_WHITE_LUT);
 	    //binaryProcessor.autoThreshold();
 	    binaryProcessor.threshold(254);
-	    ImagePlus threshold=new ImagePlus(null, binaryProcessor.createImage());
-	    threshold.setTitle("Threshold");
-	    if(show) threshold.show();
-
+        debug(binaryProcessor, "Threshold");
 
 	    binaryProcessor.dilate();
-	    ImagePlus dilate=new ImagePlus(null, binaryProcessor.createImage());
-	    dilate.setTitle("Dilate");
-	    if(show) dilate.show();
-	    /*
+        debug(binaryProcessor, "Dilate");
+
+        /*
 	    binaryProcessor.medianFilter();
 	    ImagePlus median=new ImagePlus(_destination_dir, binaryProcessor.createImage());
 	    median.setTitle("Median");
@@ -98,16 +90,18 @@ public class VectorizationServiceImpl implements VectorizationService {
 	    */
 
 	    binaryProcessor.erode();
-	    ImagePlus erode=new ImagePlus(null, binaryProcessor.createImage());
-	    erode.setTitle("Erode");
-	    if(show) erode.show();
+        debug(binaryProcessor, "Erode");
 
 	    binaryProcessor.skeletonize();
-	    ImagePlus skeleton=new ImagePlus(null, binaryProcessor.createImage());
-	    skeleton.setTitle("Skeleton");
-	    if(show) skeleton.show();
-
+        ImagePlus skeleton=new ImagePlus("Skeleton", binaryProcessor.createImage());
+        if (debug) skeleton.show();
 	    return skeleton.getBufferedImage();
 	}
+
+    private void debug(ImageProcessor processor, String title) {
+        if (!debug) return;
+        ImagePlus image=new ImagePlus(title, processor.createImage());
+        image.show();
+    }
 }
 
